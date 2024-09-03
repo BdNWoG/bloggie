@@ -1,5 +1,5 @@
-const NextResponse = require("next/server")
-const { ConnectDB } = require("../../../lib/config/db")
+import { NextResponse } from "next/server";
+import { ConnectDB } from "../../../lib/config/db"
 import { writeFile } from 'fs/promises'
 
 const LoadDB = async () => {
