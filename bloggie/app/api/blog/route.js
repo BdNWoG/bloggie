@@ -30,7 +30,7 @@ export async function POST(request){
         category: `${formData.get("category")}`,
         author: `${formData.get("author")}`,
         image:`${imgUrl}`,
-        authorImg: `${formData.get("author_img")}`,
+        author_img: `${formData.get("author_img")}`,
     }
 
     await BlogModel.create(blogData);
