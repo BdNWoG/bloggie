@@ -47,24 +47,9 @@ const page = ({params}) => {
                     </div>
                     <div className='mx-5 max-w-[800px] md:mx-auto mt-[-100px] mb-10'>
                         <Image src={data.blog.image} className='border-4 border-white' alt='' width={1280} height={720}/>
-                        <h1 className='my-8 text-[26px] font-semibold'>
-                            Introduction:
-                        </h1>
-                        <p>
-                            {data.blog.description}
-                        </p>
-                        <h3 className='my-5 text-[18px] font-semibold'>
-                            Some text here as a title a new field perhaps
-                        </h3>
-                        <p className='my-3'>
-                            Dummy text here. 
-                        </p>
-                        <h3 className='my-5 text-[18px] font-semibold'>
-                            Some text here as a title a new field perhaps
-                        </h3>
-                        <p className='my-3'>
-                            Dummy text here. 
-                        </p>
+                        <div className='blog-content' dangerouslySetInnerHTML={{__html: data.blog.description}}>
+
+                        </div>
                         <div>
                             <p className='text-black font font-semibold my-4'>
                                 Share this Article!
