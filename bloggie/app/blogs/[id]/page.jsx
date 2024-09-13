@@ -1,6 +1,6 @@
 "use client";
 
-import { assets, blog_data } from '@/assets/assets';
+import { assets } from '@/assets/assets';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,11 +9,10 @@ import axios from 'axios';
 
 //@ts-ignore
 const page = ({params}) => {
-
     const [data, setData] = useState(null);
 
     const fetchBlogData = async () => {
-        const response = await axios.get('/api/blog/', {
+        const response = await axios.get('/api/blog', {
             params: {
                 id: params.id
             }});
@@ -22,7 +21,7 @@ const page = ({params}) => {
 
     useEffect(() => {
         fetchBlogData();
-    }, [])
+    }, []);
 
     return (
         data ? (
@@ -39,20 +38,20 @@ const page = ({params}) => {
                     </div>
                     <div className='text-center my-24'>
                         <h1 className='text-2xl sm:text-5xl font-semibold max-w-[700px] mx-auto'>
-                            {data.title}
+                            {data.blog.title}
                         </h1>
-                        <Image className='mx-auto mt-6 border border-white rounded-full' src={data.author_img} alt='' width={60} height={60}/>
+                        <Image className='mx-auto mt-6 border border-white rounded-full' src={data.blog.author_img} alt='' width={60} height={60}/>
                         <p className='mt-1 pb-2 text-lg max-w-[740px] mx-auto'>
-                            {data.author}
+                            {data.blog.author}
                         </p>
                     </div>
                     <div className='mx-5 max-w-[800px] md:mx-auto mt-[-100px] mb-10'>
-                        <Image className='border-4 border-white' src={data.image} alt='' width={1280} height={720}/>
+                        <Image src={data.blog.image} className='border-4 border-white' alt='' width={1280} height={720}/>
                         <h1 className='my-8 text-[26px] font-semibold'>
                             Introduction:
                         </h1>
                         <p>
-                            {data.description}
+                            {data.blog.description}
                         </p>
                         <h3 className='my-5 text-[18px] font-semibold'>
                             Some text here as a title a new field perhaps
