@@ -1,8 +1,26 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import SubsTableItem from '@/components/admin/SubsTableItem'
+import axios from 'axios';
 
 const page = () => {
+
+    const [emails, setEmails] = useState([]);
+
+    const fetchEmails = async () => {
+        const response = await axios.get('/api/email');
+        setEmails(response.data.emails);
+    }
+
+    const deleteEmail = async () => {
+        
+    }
+
+    useEffect(() => {
+        fetchEmails();
+    }, []);
+
     return (
         <div className='flex-1 pt-5 px-5 sm:pt-12 sm:pl-16'>
             <h1>
@@ -23,7 +41,13 @@ const page = () => {
                             </th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        {emails.map((item, index) => {
+                            return (
+                                <SubsTableItem key={index} id={item._id} email={item.email} date={item.date}/>
+                            )
+                        })}
+                    </tbody>
                 </table>
             </div>
         </div>
