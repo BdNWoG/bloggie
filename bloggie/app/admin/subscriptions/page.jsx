@@ -13,8 +13,18 @@ const page = () => {
         setEmails(response.data.emails);
     }
 
-    const deleteEmail = async () => {
-        
+    const deleteEmail = async (id) => {
+        const response = await axios.delete('/api/email', {
+            params: {
+                id: id
+            }
+        });
+        if (response.data.success) {
+            toast.success(response.data.msg);
+            fetchEmails();
+        } else {
+            toast.error("Error");
+        }
     }
 
     useEffect(() => {
@@ -44,7 +54,7 @@ const page = () => {
                     <tbody>
                         {emails.map((item, index) => {
                             return (
-                                <SubsTableItem key={index} id={item._id} email={item.email} date={item.date}/>
+                                <SubsTableItem key={index} id={item._id} email={item.email} date={item.date} deleteEmail={deleteEmail}/>
                             )
                         })}
                     </tbody>

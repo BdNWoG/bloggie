@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SubsTableItem = ({email, id, date}) => {
+const SubsTableItem = ({email, id, date, deleteEmail}) => {
     const emailDate = new Date(date);
 
     return (
@@ -11,7 +11,7 @@ const SubsTableItem = ({email, id, date}) => {
             <td className='px-6 py-4 hidden sm:block'>
                 {emailDate.toDateString()}
             </td>
-            <td className='px-6 py-4 cursor-pointer'>
+            <td className='px-6 py-4 cursor-pointer' onClick={() => deleteEmail(id)}>
                 x
             </td>
         </tr>
